@@ -1,0 +1,1 @@
+gcc -Wall -Wextra main.c classes/common.c classes/person.c classes/employee.c classes/programmer.c -o build/out.exe
