@@ -7,6 +7,8 @@
 #include "classes/programmer.h"
 #include "classes/common.h"
 
+#define MAX_NAME_LIMIT 40
+
 // To illustrate functionalities with default values
 void example() {
     Person* person = PersonCreate(12332112344ULL, 24022009);
@@ -81,7 +83,6 @@ unsigned long long int GetCPF() {
 int GetBirthdate() {
     bool correct = false;
     int birthdate = 0;
-    
 
     while (!correct) {
         printf("Insira a data de nascimento (ddmmaaaa, sem separação): ");
@@ -97,14 +98,68 @@ int GetBirthdate() {
 
 }
 
+char* GetName() {
+    char* str[MAX_NAME_LIMIT];
+    printf("Insira o nome:");
+    fgets(str, MAX_NAME_LIMIT, stdin);
+    
+    return str;
+}
+
+float GetSalary() {
+    float salary;
+    printf("Input salary: ");
+    scanf("%f", &salary);
+    return salary;
+}
+
+int GetDepartment() {
+    int department;
+    printf("Choose a department:\n1 - Human Resources\n2 - Logistics\n3 - Administration\n\nOption: ");
+    scanf("%d", &department);
+    return department;
+}
+
 const char* MAIN_MENU = "Bem vindo ao sistema de gerenciamento de funcionários!";
 
+// Example constructor
 Person* InteractivePersonCreate() {
     // Input CPF (11 digits):
     unsigned long long int cpf = GetCPF();
     int birthdate = GetBirthdate();
     Person* res = PersonCreate(cpf, birthdate);
-    return;
+
+    return res;
+}
+
+Employee* InteractiveEmployeeCreate() {
+    // Person
+    unsigned long long int cpf = GetCPF();
+    int birthdate = GetBirthdate();
+    
+    // Employee
+    char* name = GetName;
+    float salary = GetSalary();
+    int department = GetDepartment();
+
+    Employee* employee = EmployeeCreate(name, salary, department, cpf, birthdate);
+    
+    return employee;
+}
+
+Programmer* InteractiveProgrammerCreate() {
+    // Person
+    unsigned long long int cpf = GetCPF();
+    int birthdate = GetBirthdate();
+    
+    // Employee
+    char* name = GetName;
+    float salary = GetSalary();
+    int department = GetDepartment();
+
+    Programmer* programmer = EmployeeCreate(name, salary, department, cpf, birthdate);
+    
+    return programmer;
 }
 
 Person* persons[32] = {};
